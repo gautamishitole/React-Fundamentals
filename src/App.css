@@ -1,7 +1,9 @@
 .bold {
     font-weight: 700;
 }
-
+button{
+    margin-left: 20px;
+}
 .regular {
     font-weight: 400;
 }
@@ -22,6 +24,9 @@
     top: 36px;
     right: 16px;
 }
+.createCourse{
+    margin-top: 60px;
+}
 
 .fs-40 {
     font-size: 40px;
@@ -38,9 +43,19 @@
 .course-author-sec {
     padding: 16px 60px 8px 16px;
 }
-
+.header {
+    padding-top: 60px;
+}
+.register{
+    margin-left: 20px;
+}
 .listScroll {
     max-height: 200px;
     overflow-y: auto;
     min-height: 100px;
 }
+a {
+    float: right;
+    margin-left: 20px;
+}
+

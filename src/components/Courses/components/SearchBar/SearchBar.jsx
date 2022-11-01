@@ -1,7 +1,13 @@
 import { Button } from '../../../../common/Button/Button';
 import Input from '../../../../common/Input/Input';
+import { Navigate, useNavigate } from "react-router-dom";
 
 function SearchBar(prop) {
+	const navigate = useNavigate();
+	function onCreateCourseClick() {
+		navigate('/createNewCourse');
+	}
+
 	const [courseName, setCourseName, setValue] = Input({
 		class: 'form-control',
 		placeholder: 'Enter Course Name..',
@@ -25,7 +31,7 @@ function SearchBar(prop) {
 			<Button
 				name='Add New Course'
 				class='btn btn-info bg-transparent'
-				click={prop.click}
+				click={() => onCreateCourseClick()}
 			></Button>
 		</div>
 	);

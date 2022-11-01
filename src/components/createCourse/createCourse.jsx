@@ -120,7 +120,7 @@ function CreateCourse({
 	}
 
 	return (
-		<div className='border border-primary rounded position-relative p-3'>
+		<div className='border border-primary rounded position-relative p-3 createCourse'>
 			{/* <Input
 				labelText='Title'
 				id='title123'

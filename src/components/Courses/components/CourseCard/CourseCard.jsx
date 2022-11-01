@@ -2,10 +2,15 @@ import Card from 'react-bootstrap/Card';
 import Button from '../../../../common/Button/Button';
 import '../../../../App.css';
 import getCourseDuration from '../../../../helpers/getCourseDuration';
+import {
+	useParams,useNavigate, Navigate
+  } from "react-router-dom";
 
 function CourseCard(prop) {
-	function showCourse() {
-		alert(prop.course.title);
+	let { title } = useParams();
+	const navigate = useNavigate();
+	function showCourse(title) {
+		navigate('/courseInfo/:title');
 	}
 	return (
 		<Card className='mb-2'>
@@ -35,7 +40,7 @@ function CourseCard(prop) {
 						<Button
 							name='Show Course'
 							class='btn btn-info bg-transparent'
-							click={() => showCourse()}
+							click={() => showCourse(prop.course.title)}
 						></Button>
 					</aside>
 				</div>

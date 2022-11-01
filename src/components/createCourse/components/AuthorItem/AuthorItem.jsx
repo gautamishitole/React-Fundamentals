@@ -4,7 +4,7 @@ import Button from '../../../../common/Button/Button';
 
 function AuthorItem({ authorList, updateAuthorList, title, buttonTitle }) {
 	function authors() {
-		if (authorList.length > 0) {
+		if (authorList && authorList.length > 0) {
 			return authorList.map((x) => {
 				return (
 					<div
