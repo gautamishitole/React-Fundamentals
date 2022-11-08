@@ -78,7 +78,6 @@ function App() {
 
 	return (
 		<div className='App'>
-			<BrowserRouter>
 				<nav>
 					<h1>React Task-2</h1>
 					<Link to='/logout'>Logout</Link>
@@ -94,7 +93,6 @@ function App() {
 					<Route path='/createNewCourse' element={<CreateCourse />} />
 					<Route path='/courseInfo/:title' element={<CourseDetails />} />
 				</Routes>
-			</BrowserRouter>
 		</div>
 	);
 }

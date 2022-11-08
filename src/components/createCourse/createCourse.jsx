@@ -4,6 +4,9 @@ import AuthorItem from './components/AuthorItem/AuthorItem';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import getCourseDuration from '../../helpers/getCourseDuration';
+import { Navigate, useNavigate } from "react-router-dom";
+import { mockedCoursesList } from '../../constants';
+
 const dayjs = require('dayjs');
 var duration = require('dayjs/plugin/duration');
 dayjs.extend(duration);
@@ -12,7 +15,7 @@ function CreateCourse({
 	setAuthorsList,
 	addNewCourseClick,
 	setCourseList,
-	courseList,
+	courseList
 }) {
 	const [title, setTitle] = Input({
 		labelText: 'Title',
@@ -43,6 +46,8 @@ function CreateCourse({
 	const [addAuthorsList, updateaddAuthorsList] = useState(authorList);
 	const [courseAuthorsList, updatecourseAuthorsList] = useState([]);
 	const [description, setDescription] = useState('');
+	const [updateCourseList] = useState(mockedCoursesList);
+	const navigate = useNavigate();
 
 	function randomStr(list) {
 		let id = uuidv4();
@@ -65,17 +70,18 @@ function CreateCourse({
 	}
 
 	function createNewCourse() {
+		let count = 0;
+		count = count + 1;
 		let newCourse = {
-			id: randomStr(courseList),
+			id: count,
 			title: title,
 			description: description,
 			creationDate: dayjs().format('DD.MM.YYYY'),
 			duration: duration,
 			authors: courseAuthorsList.map((x) => x.id),
 		};
-		setCourseList(newCourse);
-		updateaddAuthorsList(authorList);
-		addNewCourseClick();
+		alert('Course Added Successfully');
+		navigate('/courses');
 	}
 
 	function updateAuthorList(val, type) {
@@ -114,21 +120,12 @@ function CreateCourse({
 		return (
 			!title ||
 			!duration ||
-			courseAuthorsList.length === 0 ||
 			description.length < 2
 		);
 	}
 
 	return (
 		<div className='border border-primary rounded position-relative p-3 createCourse'>
-			{/* <Input
-				labelText='Title'
-				id='title123'
-				placeholder='Enter Title...'
-				labelClass='d-block pb-1'
-				class='d-block border-warning'
-				name='title'
-			/> */}
 			{setTitle}
 			<label className='d-block pt-2 pb-1'>Description</label>
 			<textarea
@@ -190,24 +187,6 @@ function CreateCourse({
 								{getCourseDuration(duration).hrLabel}
 							</span>
 						</div>
-					</div>
-					<div className='col'>
-						{/* <div className='author-list'> */}
-						<AuthorItem
-							title='Authors'
-							authorList={addAuthorsList}
-							updateAuthorList={(e) => updateAuthorList(e, 1)}
-							buttonTitle='Add Author'
-						></AuthorItem>
-						{/* </div> */}
-						{/* <div className='course-author-sec'> */}
-						<AuthorItem
-							title='Course Authors'
-							authorList={courseAuthorsList}
-							updateAuthorList={(e) => updateAuthorList(e, 2)}
-							buttonTitle='Delete Author'
-						></AuthorItem>
-						{/* </div> */}
 					</div>
 				</div>
 			</section>

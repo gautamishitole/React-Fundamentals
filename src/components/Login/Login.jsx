@@ -1,11 +1,41 @@
 import Button from '../../common/Button/Button';
 import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
 
 function Login() {
-    const navigate = useNavigate();
-    function showLoginSuccessful() {
-        navigate('/courses');
+  
+    const [name , setName] = useState('');
+    const [email , setEmail] = useState('');
+    const [password , setPassword] = useState('');
+    const [navigate , setNavigate] = useState(false);
+   
+  //   const navigate = useNavigate();
+
+  //   function showLoginSuccessful() {
+  //     navigate('/courses');
+  // }
+
+    async function showLoginSuccessful(e) {
+      e.preventDefault();
+      
+      const response = await axios.post('http://localhost:4000/login', {
+        name: name,
+        email: email
+        ,password:password
+     });
+
+     console.log(response.data);
+     localStorage.setItem('token', response.result);
+
+     setNavigate(true);
+    
     }
+
+    if(navigate){
+      return <Navigate to='/courses' />
+     }
+
     const onRegisterationPagesClick = () => {
        navigate('/registration');
     }
@@ -26,16 +56,30 @@ function Login() {
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example1c" className="form-control" />
-                            <label className="form-label" for="form3Example1c">Username</label>
+                            <input type="text" id="form3Example1c" className="form-control"
+                             onChange={e=> setName(e.target.value)}
+                            />
+                            <label className="form-label" htmlFor="form3Example1c">Username</label>
+                          </div>
+                        </div>
+
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <div className="form-outline flex-fill mb-0">
+                            <input type="text" id="form3Example1c" className="form-control"
+                             onChange={e=> setEmail(e.target.value)}
+                            />
+                            <label className="form-label" htmlFor="form3Example1c">Email</label>
                           </div>
                         </div>
       
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4c" className="form-control" />
-                            <label className="form-label" for="form3Example4c">Password</label>
+                            <input type="password" id="form3Example4c" className="form-control" 
+                             onChange={e=> setPassword(e.target.value)}
+                            />
+                            <label className="form-label" htmlFor="form3Example4c">Password</label>
                           </div>
                         </div>
       
@@ -43,7 +87,7 @@ function Login() {
                         <Button
 							name='Login'
 							className='btn btn-info bg-transparent submit'
-							click={() => showLoginSuccessful()}
+							click={(e) => showLoginSuccessful(e)}
 						></Button>
                         <Button
 							name='Register'

@@ -10,7 +10,7 @@ function Header() {
 					<Logo imgSrc={titleLogo} height='50px' />
 				</div>
 				<div className='d-flex align-items-center'>
-					<span className='pe-5'>Dave</span>
+					<span className='pe-5'>Gautami Shitole</span>
 				</div>
 			</div>
 		</header>
