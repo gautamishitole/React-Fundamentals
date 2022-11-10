@@ -34,7 +34,7 @@ function Registration() {
      }
 
     const OnLoginClick = () => {
-        navigate('/');
+      return <Navigate to="/" />
      }
     return (
         <section className="vh-100">

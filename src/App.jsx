@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 import CreateCourse from './components/createCourse/createCourse';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
@@ -12,79 +12,26 @@ import CourseInfo from './components/CourseInfo/CourseInfo';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 
 function App() {
-	/* const [addNewCourseSection, toggleClick] = useState(false);
-	const [AuthorsList, updateAuthorsList] = useState(mockedAuthorsList);
-	const [CoursesList, updateCoursesList] = useState(mockedCoursesList);
+	const [loggedIn, setItems] = useState([false]);
 
-	// function toggleCourseSection() {
-	// 	return (
-	// 		<div className='border border-primary rounded'>
-	// 			{
-	// 				if(addNewCourseSection){
-	// 				<CreateCourse authorList={mockedAuthorsList}></CreateCourse>} else
-	// 				{
-	// 					<div className='border border-primary rounded'>
-	// 						<Courses
-	// 							courseList={mockedCoursesList}
-	// 							authorList={mockedAuthorsList}
-	// 							addNewCourseClick={(addNewCourseSection = true)}
-	// 						></Courses>
-	// 					</div>
-	// 				}
-	// 			}
-	// 		</div>
-	// 	);
-	// }
-
-	function setAuthorList(val) {
-		updateAuthorsList((oldArray) => [val, ...oldArray]);
-	}
-
-	function setCourseList(val) {
-		updateCoursesList((oldArray) => [val, ...oldArray]);
-	}
-
-	function toggleCourseSection() {
-		if (addNewCourseSection) {
-			return (
-				<CreateCourse
-					authorList={[...AuthorsList]}
-					courseList={[...CoursesList]}
-					setAuthorsList={(e) => setAuthorList(e)}
-					addNewCourseClick={() => toggleClick(false)}
-					setCourseList={(e) => setCourseList(e)}
-				></CreateCourse>
-			);
+	useEffect(() => {
+	const loggedIn = localStorage.getItem('token');
+		if (loggedIn && loggedIn.length > 0) {
+		setItems(true);
 		} else {
-			return (
-				<Courses
-					courseList={[...CoursesList]}
-					authorList={AuthorsList}
-					addNewCourseClick={() => toggleClick(true)}
-				></Courses>
-			);
+			setItems(false);
 		}
-	}
-
-	return (
-		<div className='container-fluid'>
-			<Header></Header>
-			<div className='border border-primary rounded'>
-				{toggleCourseSection()}
-			</div>
-			{ */ /* <Body></Body> */ /* }
-		</div>
-	); */
+	});
 
 	return (
 		<div className='App'>
 				<nav>
 					<h1>React Task-2</h1>
 					<Link to='/logout'>Logout</Link>
-					<Link to='/'>Login</Link>
-					<Link to='/registration'>Registration</Link>
+					{!loggedIn ? <Link to='/'>Login</Link> : ''}
+					{!loggedIn ? <Link to='/registration'>Registration</Link> : ''}
 					<Link to='/courses'>Course Info</Link>
-				</nav>
+				</nav>	
 				<Routes>
 					<Route path='/' element={<Login />} />
 					<Route path='/logout' element={<Login />} />

@@ -26,7 +26,7 @@ function Login() {
      });
 
      console.log(response.data);
-     localStorage.setItem('token', response.result);
+     localStorage.setItem('token', response.data.result);
 
      setNavigate(true);
     
@@ -37,7 +37,8 @@ function Login() {
      }
 
     const onRegisterationPagesClick = () => {
-       navigate('/registration');
+      return <Navigate to='/registration' />
+       //navigate('/registration');
     }
     return (
         <section className="vh-100">
