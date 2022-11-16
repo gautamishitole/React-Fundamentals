@@ -1,10 +1,14 @@
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
+import {useSelector} from "react-redux";
 
 import React, { useState } from 'react';
 
 function Courses({ courseList, authorList, addNewCourseClick }) {
-	const [filtererdList, searchCourseListList] = useState(courseList);
+	const courses = useSelector((state) => state.allCourses.courses);
+	const authors = useSelector((state) => state.allAuthors.authors);
+
+	const [filtererdList, searchCourseListList] = useState(courses);
 
 	function filterList(val) {
 		if (!val) {
@@ -18,25 +22,29 @@ function Courses({ courseList, authorList, addNewCourseClick }) {
 			searchCourseListList(newList);
 		}
 	}
+
+	const renderCourses = 
+			
+				<div className='p-3'>
+					<div className='search-add-section pb-3'>
+						<SearchBar
+							click={addNewCourseClick}
+							filterList={(e) => filterList(e)}
+						></SearchBar>
+					</div>
+					<div className='card-section'>
+						{courses.map((x) => {
+							const course = x;
+							return (
+								<CourseCard></CourseCard>
+							);
+						 })}
+					</div>
+				</div>
+		
+
 	return (
-		<div className='p-3'>
-			<div className='search-add-section pb-3'>
-				<SearchBar
-					click={addNewCourseClick}
-					filterList={(e) => filterList(e)}
-				></SearchBar>
-			</div>
-			<div className='card-section'>
-				{filtererdList.map((x) => {
-					const authors = authorList
-						.filter((e) => x.authors.includes(e.id))
-						.map((e) => e.name);
-					return (
-						<CourseCard key={x.id} course={x} authors={authors}></CourseCard>
-					);
-				})}
-			</div>
-		</div>
+		<>{renderCourses}</>
 	);
 }
 

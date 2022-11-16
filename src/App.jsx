@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header/Header';
+//import Header from './components/Header/Header';
 // import Body from './components/Body/Body';
 import Courses from './components/Courses/Courses';
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 import CreateCourse from './components/createCourse/createCourse';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Switch} from 'react-router-dom';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
 import CourseInfo from './components/CourseInfo/CourseInfo';
 import CourseDetails from './components/CourseDetails/CourseDetails';
+
+
+
+
 
 function App() {
 	const [loggedIn, setItems] = useState([false]);
@@ -25,8 +29,18 @@ function App() {
 
 	return (
 		<div className='App'>
+			{/* <Router>
+				<Header />
+				<Routes>
+				<Route path = "/"  element={<CourseListing />} />
+				<Route path = "/course/:courseId" exact component={CourseDetails} />
+				<Route> 404 not found </Route>
+				</Routes>
+			</Router> */}
+
+		
 				<nav>
-					<h1>React Task-2</h1>
+					<h1>Redux</h1>
 					<Link to='/logout'>Logout</Link>
 					{!loggedIn ? <Link to='/'>Login</Link> : ''}
 					{!loggedIn ? <Link to='/registration'>Registration</Link> : ''}
