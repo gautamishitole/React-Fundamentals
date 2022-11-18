@@ -1,5 +1,6 @@
 
 export const CourseTypes = {
+    FETCH_COURSES: "FETCH_COURSES",
     SET_COURSES: "SET_COURSES",
     REMOVE_COURSE: "REMOVE_COURSE",
 };

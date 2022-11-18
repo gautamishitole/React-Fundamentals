@@ -1,5 +1,6 @@
 
 export const AuthorTypes = {
+    FETCH_AUTHORS: "FETCH_AUTHORS",
     SET_AUTHORS: "SET_AUTHORS",
     REMOVE_AUTHOR: "REMOVE_AUTHOR",
 };
