@@ -4,7 +4,7 @@ import titleLogo from '../../assets/course-react.png';
 
 function Header() {
 	return (
-		<header className='pb-3 header'>
+		<header data-testid='header' className='pb-3 header'>
 			<div className='d-flex justify-content-between align-items-center p-3 border border-danger rounded'>
 				<div>
 					<Logo imgSrc={titleLogo} height='50px' />

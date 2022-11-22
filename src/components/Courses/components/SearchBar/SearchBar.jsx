@@ -14,7 +14,7 @@ function SearchBar(prop) {
 		name: 'coursename',
 	});
 	return (
-		<div className='d-flex justify-content-between align-items-center'>
+		<div  data-testid='search-bar' className='d-flex justify-content-between align-items-center'>
 			<div className='input-sec d-inline-flex align-items-center'>
 				{/* <Input
 					class='form-control'
